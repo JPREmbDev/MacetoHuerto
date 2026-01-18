@@ -1,0 +1,30 @@
+﻿# Normalize repository EOL to LF for cross-platform consistency.
+# Cada regla tiene un comentario que explica qué hace y por qué.
+
+# 1) Normalizar todos los ficheros de texto a LF en el repositorio.
+#    Evita diffs ruidosos entre Windows y Unix/CI.
+* text=auto eol=lf
+
+# 2) JSON: forzar LF (config files, VSCode settings, etc.).
+#    Muchos editores en Windows usan CRLF localmente; el repo debe usar LF.
+*.json text eol=lf
+
+# 3) Shell scripts: requieren LF para ejecutarse correctamente en Linux/CI.
+*.sh text eol=lf
+
+# 4) SDK/config files: tratarlos como texto y usar LF (toolchains suelen esperar LF).
+sdkconfig.* text eol=lf
+
+# 5) Windows scripts: mantener CRLF para compatibilidad con cmd/PowerShell en Windows.
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# 6) Binarios: marcar como binary para evitar cualquier normalización.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.exe binary
+* text=auto eol=lf
