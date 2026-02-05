@@ -1,159 +1,82 @@
-# Configuración de estilo de código C/C++ (basado en Google)
-# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-
-# Lenguaje al que se aplica (C++)
+# Archivo .clang-format definitivo - Compatible con C y C++
+# Resuelve: Alineación profesional, unión de includes y error de guardado
 Language: Cpp
-# Estilo base del que hereda
 BasedOnStyle: Google
-# Desplazamiento de los modificadores de acceso (public, private, etc)
-AccessModifierOffset: -1
-# Alineación tras abrir un paréntesis
+
+# --- 1. GESTIÓN DE INCLUDES (Sin saltos de línea) ---
+# Une todos los bloques de #include en uno solo sin espacios entre ellos
+IncludeBlocks: Merge
+# Ordena los includes alfabéticamente dentro del bloque
+SortIncludes: true
+
+# --- 2. ALINEACIÓN PROFESIONAL (Estilo Columna) ---
+# Alinea parámetros verticalmente bajo el paréntesis de apertura
 AlignAfterOpenBracket: Align
-# No alinear asignaciones consecutivas en columnas
-AlignConsecutiveAssignments: None
-# Alinear operandos en expresiones multilínea
-AlignOperands: Align
-# Permitir todos los argumentos en la siguiente línea
-AllowAllArgumentsOnNextLine: true
-# Permitir todos los inicializadores de constructor en la siguiente línea
-AllowAllConstructorInitializersOnNextLine: true
-# No permitir todos los parámetros de declaración en la siguiente línea si no caben
+# Cada parámetro en su propia línea para máxima claridad
+BinPackArguments: false
+BinPackParameters: false
+# Evita que el formateador mande todos los parámetros a una línea nueva indentada
 AllowAllParametersOfDeclarationOnNextLine: false
-# Permitir bloques cortos (como {}) en una sola línea si están vacíos
-AllowShortBlocksOnASingleLine: Empty
-# No permitir etiquetas de 'case' cortas en una sola línea
-AllowShortCaseLabelsOnASingleLine: false
-# Permitir funciones cortas en una sola línea solo si están dentro de una clase (inline)
-AllowShortFunctionsOnASingleLine: Inline
-# No permitir sentencias 'if' cortas en una sola línea
-AllowShortIfStatementsOnASingleLine: Never
-# Permitir lambdas cortas en una sola línea
-AllowShortLambdasOnASingleLine: Inline
-# No permitir bucles cortos en una sola línea
-AllowShortLoopsOnASingleLine: false
-# No forzar salto de línea después del tipo de retorno
-AlwaysBreakAfterReturnType: None
-# Siempre romper líneas en declaraciones de templates
-AlwaysBreakTemplateDeclarations: Yes
-# Empaquetado binario de argumentos
-BinPackArguments: true
-# Estilo de rotura de llaves personalizado
-BreakBeforeBraces: Custom
-# Configuración detallada de cómo envuelven las llaves {}
-BraceWrapping:
-  # Tras una etiqueta case
-  AfterCaseLabel: false
-  # Tras una clase
-  AfterClass: false
-  # Tras una estructura
-  AfterStruct: false
-  # Tras sentencias de control (if, for, etc)
-  AfterControlStatement: Never
-  # Tras un enum
-  AfterEnum: false
-  # Tras una función
-  AfterFunction: false
-  # Tras un namespace
-  AfterNamespace: false
-  # Tras una unión
-  AfterUnion: false
-  # Tras un bloque extern
-  AfterExternBlock: false
-  # Antes de un catch
-  BeforeCatch: false
-  # Antes de un else
-  BeforeElse: false
-  # Antes del cuerpo de una lambda
-  BeforeLambdaBody: false
-  # Indentar las llaves
-  IndentBraces: false
-  # Dividir funciones vacías
-  SplitEmptyFunction: false
-  # Dividir registros vacíos
-  SplitEmptyRecord: false
-  # Dividir namespaces vacíos
-  SplitEmptyNamespace: false
-# No romper líneas antes de operadores binarios
-BreakBeforeBinaryOperators: None
-# Romper líneas antes de operadores ternarios (? :)
-BreakBeforeTernaryOperators: true
-# Romper inicializadores de constructor antes de los dos puntos
-BreakConstructorInitializers: BeforeColon
-# Romper lista de herencia antes de los dos puntos
-BreakInheritanceList: BeforeColon
-# Límite de caracteres por línea
+AllowAllArgumentsOnNextLine: false
+
+# --- 3. CONFIGURACIÓN GENERAL Y ESTILO ---
+AccessModifierOffset: -1
+AlignConsecutiveAssignments: None
+AlignOperands: Align
 ColumnLimit: 79
-# No compactar namespaces
-CompactNamespaces: false
-# Ancho de indentación para líneas continuadas
-ContinuationIndentWidth: 4
-# Estilo de lista de inicialización C++11
-Cpp11BracedListStyle: true
-# No derivar alineación de punteros automáticamente
-DerivePointerAlignment: false
-# Línea vacía antes de modificadores de acceso
-EmptyLineBeforeAccessModifier: LogicalBlock
-# Corregir comentarios de cierre de namespace
-FixNamespaceComments: true
-# Preservar bloques de includes
-IncludeBlocks: Preserve
-# Indentar etiquetas de 'case' en switches
-IndentCaseLabels: true
-# No indentar directivas de preprocesador (#ifdef, etc)
-IndentPPDirectives: None
-# Ancho de la indentación (espacios)
 IndentWidth: 2
-# Mantener líneas vacías al inicio de los bloques
-KeepEmptyLinesAtTheStartOfBlocks: true
-# Máximo de líneas vacías consecutivas a mantener
-MaxEmptyLinesToKeep: 1
-# Indentación dentro de namespaces
-NamespaceIndentation: None
-# No añadir espacio tras propiedad de ObjC
-ObjCSpaceAfterProperty: false
-# Añadir espacio antes de lista de protocolo ObjC
-ObjCSpaceBeforeProtocolList: true
-# Alinear el puntero (*) a la izquierda
-PointerAlignment: Left
-# No re-ajustar comentarios automáticamente
-ReflowComments: false
-# No añadir espacio tras cast estilo C
-SpaceAfterCStyleCast: false
-# No añadir espacio tras NOT lógico (!)
-SpaceAfterLogicalNot: false
-# Añadir espacio tras palabra clave template
-SpaceAfterTemplateKeyword: true
-# Espacio antes de operadores de asignación (=, +=, etc)
-SpaceBeforeAssignmentOperators: true
-# No añadir espacio antes de listas C++11 ({})
-SpaceBeforeCpp11BracedList: false
-# Espacio antes de los dos puntos en inicializadores de constructor
-SpaceBeforeCtorInitializerColon: true
-# Espacio antes de los dos puntos en herencia
-SpaceBeforeInheritanceColon: true
-# Espacio antes de paréntesis solo en sentencias de control (if, while...)
-SpaceBeforeParens: ControlStatements
-# Espacio antes de los dos puntos en bucles for basados en rango
-SpaceBeforeRangeBasedForLoopColon: true
-# No añadir espacio antes de corchetes ([])
-SpaceBeforeSquareBrackets: false
-# No añadir espacio en paréntesis vacíos
-SpaceInEmptyParentheses: false
-# Espacios antes de un comentario al final de línea
-SpacesBeforeTrailingComments: 2
-# No añadir espacios en ángulos (< >)
-SpacesInAngles: false
-# No añadir espacios en paréntesis de cast estilo C
-SpacesInCStyleCastParentheses: false
-# No añadir espacios en literales de contenedor
-SpacesInContainerLiterals: false
-# No añadir espacios en paréntesis
-SpacesInParentheses: false
-# No añadir espacios en corchetes
-SpacesInSquareBrackets: false
-# Estándar de C++ a seguir
-Standard: c++11
-# Ancho de tabulación
 TabWidth: 4
-# No usar tabuladores, usar espacios
 UseTab: Never
+Standard: c++11
+
+# --- 4. ESTILO DE LLAVES (Evita error "Formatting failed") ---
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterStruct: false
+  AfterControlStatement: false 
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeLambdaBody: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+
+# --- 5. ESPACIOS, PUNTEROS Y PREPROCESADOR ---
+# Alinea el puntero a la izquierda (uint8_t* ptr)
+PointerAlignment: Left
+DerivePointerAlignment: false
+# Mantiene las directivas # pegadas al margen izquierdo
+IndentPPDirectives: None
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCpp11BracedList: false
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: ControlStatements
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 2
+
+# --- 6. OTROS AJUSTES ---
+AllowShortBlocksOnASingleLine: Never 
+AlwaysBreakAfterReturnType: None
+AlwaysBreakTemplateDeclarations: Yes
+BreakBeforeBinaryOperators: None
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializers: BeforeColon
+BreakInheritanceList: BeforeColon
+FixNamespaceComments: true
+KeepEmptyLinesAtTheStartOfBlocks: true
+MaxEmptyLinesToKeep: 1
+ReflowComments: false

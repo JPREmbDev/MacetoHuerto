@@ -2,7 +2,7 @@
 #include <driver/i2c_master.h>
 #include <esp_log.h>
 
-const char* TAG = "SCANNER";
+static const char* TAG = "SCANNER";
 
 void scanneri2c_scan(void) {
   ESP_LOGE(TAG, "--Starting scan--");
